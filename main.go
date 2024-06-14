@@ -7,7 +7,9 @@ import (
 )
 
 func main() {
-	r := gin.Default()
+	r := gin.New()
+	r.Use(gin.Logger(), gin.Recovery())
+
 
 	r.GET("/", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
@@ -15,5 +17,5 @@ func main() {
 		})
 	})
 
-	r.Run()
+	r.Run(":8000")
 }
