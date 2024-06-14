@@ -22,7 +22,7 @@ func SetupMiddlewares(router *gin.Engine) {
 }
 
 func SetupNoRoutes(router *gin.Engine) {
-		router.NoRoute(func(c *gin.Context) {
+	router.NoRoute(func(c *gin.Context) {
 		accept := c.Request.Header.Get("Accept")
 		if strings.Contains(accept, "text/html") {
 			c.String(http.StatusNotFound, "Not Found")
