@@ -1,0 +1,3 @@
+@baseurl = http://localhost:8080
+
+GET {{baseurl}} HTTP/1.1
