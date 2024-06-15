@@ -4,13 +4,13 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/channel/routes"
+	"github.com/channel/route"
 	"github.com/gin-gonic/gin"
 )
 
 func SetupRoutes(router *gin.Engine) {
 	SetupMiddlewares(router)
-	routes.SetupAPIRoutes(router)
+	route.SetupAPIRoutes(router)
 	SetupNoRoutes(router)
 }
 

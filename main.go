@@ -10,10 +10,11 @@ import (
 
 func main() {
 	bootstrap.SetupEnv()
-	env := env.GetConfig()
+	env := env.GetEnv()
+	bootstrap.SetupDB(env)
 	router := gin.New()
 	bootstrap.SetupRoutes(router)
-	err := router.Run(fmt.Sprintf(":%d", env.AppConfig.Port))
+	err := router.Run(fmt.Sprintf(":%d", env.AppEnv.Port))
 	if err != nil {
 		fmt.Println(err.Error())
 	}

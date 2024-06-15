@@ -1,24 +1,41 @@
 package env
 
 import (
+	"fmt"
+
 	"github.com/BurntSushi/toml"
 )
 
-var cfg IConfig
+var env IEnv
 
-type IConfig struct {
-	AppConfig IAppConfig
+type IEnv struct {
+	AppEnv IAppEnv
+	DBEnv IDBEnv
 }
 
-type IAppConfig struct {
+type IAppEnv struct {
 	Port int
 }
 
-func InitConfig(path *string) error {
-	_, err := toml.DecodeFile(*path, &cfg)
+type IDBEnv struct {
+	Connection string
+	Host string
+	Port int
+	Database string
+	Username string
+	Password string
+	Charset string
+	Max_open_conns int
+	Max_idle_conns int
+	Max_life_seconds int
+}
+
+func LoadEnv(path *string) error {
+	_, err := toml.DecodeFile(*path, &env)
+	fmt.Printf("LoadEnv: %v", env)
 	return err
 }
 
-func GetConfig() IConfig {
-	return cfg
+func GetEnv() IEnv {
+	return env
 }
