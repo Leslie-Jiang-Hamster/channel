@@ -9,6 +9,7 @@ import (
 
 func SetupEnv() error {
 	path := flag.String("e", ".env", "Environment variables")
+	flag.Parse()
 	if err := config.InitConfig(path); err != nil {
 		return fmt.Errorf("Fail to load config: %v", err)
 	}
