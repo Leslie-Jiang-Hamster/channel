@@ -4,13 +4,13 @@ import (
 	"fmt"
 
 	"github.com/channel/bootstrap"
-	"github.com/channel/config"
+	"github.com/channel/env"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	bootstrap.SetupEnv()
-	env := config.GetConfig()
+	env := env.GetConfig()
 	router := gin.New()
 	bootstrap.SetupRoutes(router)
 	err := router.Run(fmt.Sprintf(":%d", env.AppConfig.Port))
